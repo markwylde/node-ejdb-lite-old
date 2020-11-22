@@ -26,6 +26,7 @@ The official EJDB2 library for nodejs is fantastic, but this library has a few d
 - [iowow](http://iowow.io/) - kv engine that backs edjb2
 - [Anton's blog](https://medium.com/@adamansky/ejdb2-41670e80897c)
 - [mql-to-jql](https://github.com/markwylde/mql-to-jql) - convert mongo query into ejdb2 style
+- [canhazdb](https://github.com/markwylde/canhazdb) - create a clustered and sharded restful server
 
 ## Installation
 ```bash
