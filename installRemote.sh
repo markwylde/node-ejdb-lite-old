@@ -7,8 +7,10 @@ elif [ "$(uname)" == "Linux" ]; then
   os=linux
 else
   echo "Could not detect operating system"
+  uname
+  uname -a
   echo "Will attempt to build from source"
-  npm install
+  npm install --ignore-scripts
   npm run build:source
   exit 0
 fi
