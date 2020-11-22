@@ -17,7 +17,7 @@ The official EJDB2 library for nodejs is fantastic, but this library has a few d
 - Therefore, no cmake, make or g++ required to install
 - Fallback to build from source when no compatable prebuilt binary found 
 - Removed all typescript and yarn usages
-- Fixes a [bug](https://github.com/Softmotions/ejdb/pull/296) with unicodes characters in JSON
+- Fixes a [bug](https://github.com/Softmotions/ejdb/issues/298) with unicodes characters in JSON
 - Removed all other languages bindings
 
 ## Other projects:
