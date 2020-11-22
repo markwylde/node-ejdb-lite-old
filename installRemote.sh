@@ -11,7 +11,7 @@ else
   uname -a
   echo "Will attempt to build from source"
   npm install --ignore-scripts
-  npm run build:source
+  npm run install:source
   exit 0
 fi
 
