@@ -15,7 +15,7 @@ fi
 
 echo "Your OS is $os"
 
-downloadUrl="https://github.com/markwylde/node-ejdb-lite/releases/download/v$version-lite/ejdb2_node_x64_${os}_14.x.node"
+downloadUrl="https://github.com/markwylde/node-ejdb-lite/releases/download/v$version/ejdb2_node_x64_${os}_14.x.node"
 echo "Downloading $downloadUrl"
 mkdir -p build/src/bindings/ejdb2_node/ejdb2_node/linux-x64
 wget -O build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node $downloadUrl
