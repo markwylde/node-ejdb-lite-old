@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        type: [linux-node14]
+        type: [linux-node14, alpine-node14]
         include:
           - type: linux-node14
             image: node:14
