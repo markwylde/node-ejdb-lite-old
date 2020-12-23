@@ -27,7 +27,7 @@
     "test": "cd ./src/bindings/ejdb2_node && ava -s",
     "install": "npm run install:remote",
     "install:remote": "./installRemote.sh",
-    "install:source": "./node_modules/.bin/cmake-js --CDBUILD_NODEJS_BINDING=ON --CDCMAKE_BUILD_TYPE=Release"
+    "install:source": "./node_modules/.bin/cmake-js --CDBUILD_NODEJS_BINDING=ON --CDCMAKE_BUILD_TYPE=Release --prefer-make"
   },
   "files": [
     "*.js",

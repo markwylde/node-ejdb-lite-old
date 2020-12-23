@@ -10,17 +10,17 @@ For API usage examples take a look into [/example](https://github.com/Softmotion
 const { EJDB2 } = require('node-ejdb-lite');
 
 async function run() {
-  const db = await EJDB2.open('example.db', { truncate: true });
+  const db = await EJDB2.open("example.db", { truncate: true });
 
-  var id = await db.put('parrots', {'name': 'Bianca', 'age': 4});
+  var id = await db.put("parrots", { name: "Bianca", age: 4 });
   console.log(`Bianca record: ${id}`);
 
-  id = await db.put('parrots', {'name': 'Darko', 'age': 8});
+  id = await db.put("parrots", { name: "Darko", age: 8 });
   console.log(`Darko record: ${id}`);
 
-  const q = db.createQuery('/[age > :age]', 'parrots');
+  const q = db.createQuery("/[age > :age]", "parrots");
 
-  for await (const doc of q.setNumber('age', 3).stream()) {
+  for await (const doc of q.setNumber("age", 3).stream()) {
     console.log(`Found ${doc}`);
   }
 
@@ -32,11 +32,12 @@ run();
 
 ## Supported platforms
 
-* Linux x64
-* OSX
+- Linux x64
+- OSX
 
 ## Prerequisites
 
+<<<<<<< HEAD
 * node >= v10.0.0
 
 ## How build it manually
@@ -45,4 +46,22 @@ run();
 git clone https://github.com/markwylde/node-ejdb-lite.git
 cd ./node-ejdb-lite
 npm install
+=======
+- node >= v10.0.0
+- yarn
+- CMake >= v3.10
+- Make
+- gcc or clang compiler
+
+## How build it manually
+
+```sh
+git clone https://github.com/Softmotions/ejdb.git
+cd ./ejdb
+mkdir ./build && cd build
+cmake .. -DBUILD_NODEJS_BINDING=ON -DCMAKE_BUILD_TYPE=Release
+make
+cd src/bindings/ejdb2_node/ejdb2_node
+yarn pack
+>>>>>>> 4af9bd5f749233261d10fa3bc4f4fede33faac9b
 ```
