@@ -37,16 +37,6 @@ run();
 
 ## Prerequisites
 
-<<<<<<< HEAD
-* node >= v10.0.0
-
-## How build it manually
-
-``` sh
-git clone https://github.com/markwylde/node-ejdb-lite.git
-cd ./node-ejdb-lite
-npm install
-=======
 - node >= v10.0.0
 - yarn
 - CMake >= v3.10
@@ -63,5 +53,4 @@ cmake .. -DBUILD_NODEJS_BINDING=ON -DCMAKE_BUILD_TYPE=Release
 make
 cd src/bindings/ejdb2_node/ejdb2_node
 yarn pack
->>>>>>> 4af9bd5f749233261d10fa3bc4f4fede33faac9b
 ```
