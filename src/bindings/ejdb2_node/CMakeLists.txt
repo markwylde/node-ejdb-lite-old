@@ -58,7 +58,6 @@ else()
                LINK_FLAGS "-rdynamic -Wl,--unresolved-symbols=ignore-all")
 endif()
 
-configure_file(package.json ${NODE_PUB_DIR}/package.json @ONLY)
 configure_file(CHANGELOG.md ${NODE_PUB_DIR}/CHANGELOG.md @ONLY)
 configure_file(README.md ${NODE_PUB_DIR}/README.md COPYONLY)
 configure_file(index.js ${NODE_PUB_DIR}/index.js COPYONLY)

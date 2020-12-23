@@ -174,7 +174,6 @@ if(CPACK_GENERATORS)
       "\\\\.project$"
       "\\\\.workspace$")
   set(PROJECT_ARCH "${CMAKE_SYSTEM_PROCESSOR}")
-  add_subdirectory(installer)
 endif(CPACK_GENERATORS)
 
 message("${PROJECT_NAME} GIT_REVISION: ${GIT_REVISION}")
