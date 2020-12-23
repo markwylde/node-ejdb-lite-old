@@ -1,12 +1,11 @@
 on:
-  release:
-    types: [created]
+  pull_request:
 
-name: Upload Release Asset
+name: Run Tests
 
 jobs:
   build:
-    name: Upload Release Asset
+    name: Run Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -41,20 +40,3 @@ jobs:
 
       - name: Run tests
         run: npm run test
-
-      - name: Get release
-        id: get_release
-        uses: bruceadams/get-release@v1.2.2
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
-          asset_name: ejdb2_node_x64_${{ matrix.os }}_${{ matrix.node-version }}.node
-          asset_content_type: application/octet-stream

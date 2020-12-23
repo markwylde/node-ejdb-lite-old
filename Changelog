@@ -1,6 +1,40 @@
+ejdb2 (2.0.58) testing; urgency=medium
+
+  * New versioning scheme is used for ejdb2 bindings.
+  * Fixed pub publish issues with dart and flutter bindings.
+  * Upgraded to iwkv v1.4.10
+
+ -- Anton Adamansky <adamansky@gmail.com>  Tue, 22 Dec 2020 22:33:24 +0700
+
+ejdb2 (2.0.57) testing; urgency=medium
+
+  * Added new non standard JSON `swap` operation.
+  * bugfix: Incorrect behavior of JSON patch `move` operation.
+  * Added --trylock option to jbs
+  * jbs server CLI should be able to load access token from file (#219)
+  * bugfix: Updated to iowow v1.4.10 with fix https://github.com/Softmotions/iowow/issues/35
+  * enhancement: EJDB2 Java binding improvements.
+
+ -- Anton Adamansky <adamansky@gmail.com>  Thu, 17 Dec 2020 23:12:37 +0700
+
+ejdb2 (2.0.56) testing; urgency=medium
+
+  * EJDB2 Java binding improvements.
+  * Added EJDB2 Maven example project and maven repository deployment.
+
+ -- Anton Adamansky <adamansky@gmail.com>  Thu, 10 Dec 2020 00:27:09 +0700
+
+ejdb2 (2.0.55) testing; urgency=medium
+
+  * EJDB2 Java binding now in Ubuntu ppa:adamansky/ejdb2
+  * Build scripts refactoring.
+  * Reduced number of WS server threads to half of available CPU Cores.
+
+ -- Anton Adamansky <adamansky@gmail.com>  Sun, 06 Dec 2020 22:16:20 +0700
+
 ejdb2 (2.0.54) testing; urgency=medium
 
-  * CRITICAL: Fixed incorrect behaviour of `_jbl_cmp_atomic_values`
+  * CRITICAL: Fixed incorrect behavior of `_jbl_cmp_atomic_values`
     which leads to inconsitent number indexes processing.
   * Transfered `-DASAN` to `AddIOWOW` CMake module.
 
