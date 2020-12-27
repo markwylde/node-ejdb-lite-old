@@ -213,7 +213,7 @@ if(BUILD_EXAMPLES)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
 endif()
 
-if (BUILD_NODEJS_BINDING)
+if(BUILD_NODEJS_BINDING)
   add_subdirectory(bindings/ejdb2_node)
 endif()
 
