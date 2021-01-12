@@ -2,6 +2,7 @@
 
 [![Join Telegram](https://img.shields.io/badge/join-ejdb2%20telegram-0088cc.svg)](https://tlg.name/ejdb2)
 [![license](https://img.shields.io/github/license/Softmotions/ejdb.svg)](https://github.com/Softmotions/ejdb/blob/master/LICENSE)
+![maintained](https://img.shields.io/maintenance/yes/2021.svg)
 
 EJDB2 is an embeddable JSON database engine published under MIT license.
 
@@ -793,7 +794,7 @@ modifier to the query to get rid of unnecessary data transferring and json data 
 
 MIT License
 
-Copyright (c) 2012-2020 Softmotions Ltd <info@softmotions.com>
+Copyright (c) 2012-2021 Softmotions Ltd <info@softmotions.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

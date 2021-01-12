@@ -7,4 +7,6 @@ rm -rf .vscode \
   src/bindings/ejdb2_dart \
   src/bindings/ejdb2_flutter \
   src/bindings/ejdb2_jni \
-  src/bindings/ejdb2_react_native
+  src/bindings/ejdb2_react_native \
+  BASE.md \
+  src/bindings/ejdb2_node/install.js

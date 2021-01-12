@@ -1,5 +1,10 @@
 file(READ ${CMAKE_CURRENT_SOURCE_DIR}/version.txt _VERSION)
+<<<<<<< HEAD
 set_property(GLOBAL PROPERTY EJDB2_NODE_VERSION_PROPERTY "${PROJECT_VERSION}${_VERSION}")
+=======
+set_property(GLOBAL PROPERTY EJDB2_NODE_VERSION_PROPERTY
+                             "${PROJECT_VERSION}${_VERSION}")
+>>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
 set(EJDB2_NODE_VERSION "${PROJECT_VERSION}${_VERSION}")
 
 if(NOT DEFINED NODE_PUB_DIR)
@@ -32,10 +37,17 @@ endif()
 string(TOLOWER ${CMAKE_SYSTEM_NAME}-${PROCESSOR} NODE_BIN_SUFFIX)
 set(NODE_BIN_DIR ${NODE_BIN_ROOT}/${NODE_BIN_SUFFIX})
 
+<<<<<<< HEAD
 find_program(NPM_EXEC npm)
 if (NPM_EXEC MATCHES "NPM_EXEC-NOTFOUND")
   message(FATAL_ERROR "`npm` executable not found")
 endif ()
+=======
+find_program(YARN_EXEC yarn)
+if(YARN_EXEC MATCHES "YARN_EXEC-NOTFOUND")
+  message(FATAL_ERROR "`yarn` executable not found")
+endif()
+>>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
 
 add_library(ejdb2_node MODULE ejdb2_node.c)
 target_link_libraries(ejdb2_node ejdb2_s ${PROJECT_LLIBRARIES})
@@ -49,6 +61,7 @@ target_compile_options(ejdb2_node PRIVATE -DIW_API_EXPORTS
 
 if(APPLE)
   set_target_properties(
+<<<<<<< HEAD
     ejdb2_node PROPERTIES LINK_FLAGS_RELEASE "${LINK_FLAGS_RELEASE} -s"
                           LINK_FLAGS "-rdynamic -undefined dynamic_lookup")
 else()
@@ -60,14 +73,50 @@ endif()
 
 configure_file(CHANGELOG.md ${NODE_PUB_DIR}/CHANGELOG.md @ONLY)
 configure_file(README.md ${NODE_PUB_DIR}/README.md COPYONLY)
+=======
+    ejdb2_node PROPERTIES LINK_FLAGS "-rdynamic -undefined dynamic_lookup")
+else()
+  set_target_properties(
+    ejdb2_node PROPERTIES LINK_FLAGS
+                          "-rdynamic -Wl,--unresolved-symbols=ignore-all")
+endif()
+
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+  add_custom_command(
+    TARGET ejdb2_node
+    POST_BUILD
+    COMMAND strip -s $<TARGET_FILE:ejdb2_node>)
+endif()
+
+configure_file(package.json ${NODE_PUB_DIR}/package.json @ONLY)
+configure_file(CHANGELOG.md ${NODE_PUB_DIR}/CHANGELOG.md @ONLY)
+configure_file(README.md ${NODE_PUB_DIR}/README.md COPYONLY)
+configure_file(yarn.lock ${NODE_PUB_DIR}/yarn.lock COPYONLY)
+>>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
 configure_file(index.js ${NODE_PUB_DIR}/index.js COPYONLY)
 configure_file(index.d.ts ${NODE_PUB_DIR}/index.d.ts COPYONLY)
 configure_file(binary.js ${NODE_PUB_DIR}/binary.js COPYONLY)
 configure_file(utils.js ${NODE_PUB_DIR}/utils.js COPYONLY)
 configure_file(test.js ${NODE_PUB_DIR}/test.js COPYONLY)
 
+<<<<<<< HEAD
 if (BUILD_TESTS)
   add_test(NAME ejdb2node
     COMMAND ${NPM_EXEC} run test
+=======
+add_custom_command(
+  COMMAND yarn install
+  OUTPUT ${NODE_PUB_DIR}/node_modules
+  DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/yarn.lock
+          ${CMAKE_CURRENT_SOURCE_DIR}/package.json
+  WORKING_DIRECTORY ${NODE_PUB_DIR}
+  VERBATIM)
+add_custom_target(yarn ALL DEPENDS ${NODE_PUB_DIR}/node_modules)
+
+if(BUILD_TESTS)
+  add_test(
+    NAME ejdb2node
+    COMMAND ${YARN_EXEC} run test
+>>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
     WORKING_DIRECTORY ${NODE_PUB_DIR})
 endif()

@@ -108,9 +108,13 @@ foreach(HF IN ITEMS stdlib stddef stdint stdbool)
   endif()
 endforeach()
 
-add_definitions(-D_GNU_SOURCE)
+add_definitions(-D_XOPEN_SOURCE=600)
+add_definitions(-D_DEFAULT_SOURCE)
 add_definitions(-D_LARGEFILE_SOURCE)
 add_definitions(-D_FILE_OFFSET_BITS=64)
+if(APPLE)
+  add_definitions(-D_DARWIN_C_SOURCE)
+endif(APPLE)
 
 file(GLOB ROOT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/*.c)
 list(APPEND ALL_SRC ${ROOT_SRC})
@@ -155,7 +159,7 @@ set(CMAKE_C_FLAGS_DEBUG
     "${CMAKE_C_ASAN} -O0 -g -ggdb -Werror -DDEBUG -D_DEBUG -UNDEBUG -Wno-unused-variable"
 )
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_ASAN} -O3 -DNDEBUG")
-set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-Wl,-s")
+# set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-Wl,-s")
 set(CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELEASE} -g")
 set(CMAKE_C_FLAGS_RELEASEWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO}")
 
@@ -212,11 +216,41 @@ endif()
 if(BUILD_EXAMPLES)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
 endif()
+<<<<<<< HEAD
+=======
+
+if(BUILD_DART_BINDING)
+  add_subdirectory(bindings/ejdb2_dart)
+endif()
+
+if(BUILD_JNI_BINDING)
+  add_subdirectory(bindings/ejdb2_jni)
+endif()
+>>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
 
 if(BUILD_NODEJS_BINDING)
   add_subdirectory(bindings/ejdb2_node)
 endif()
 
+<<<<<<< HEAD
+=======
+if(BUILD_ANDROID_LIBS)
+  add_subdirectory(bindings/ejdb2_android)
+endif()
+
+if(BUILD_REACT_NATIVE_BINDING)
+  add_subdirectory(bindings/ejdb2_react_native)
+endif()
+
+if(BUILD_FLUTTER_BINDING)
+  add_subdirectory(bindings/ejdb2_flutter)
+endif()
+
+if(BUILD_SWIFT_BINDING)
+  add_subdirectory(bindings/ejdb2_swift)
+endif()
+
+>>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
 if(NOT BUILD_SHARED_LIBS)
   add_definitions(-DIW_NODLL)
   add_library(ejdb2 STATIC ${ALL_SRC})
@@ -252,8 +286,20 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES VERSION ${PROJECT_VERSION}
                SOVERSION ${PROJECT_VERSION_MAJOR}
                PUBLIC_HEADER "${PUB_HDRS}"
+<<<<<<< HEAD
                LINK_FLAGS_RELEASE "${LINK_FLAGS_RELEASE} -s"
                DEFINE_SYMBOL IW_API_EXPORTS)
+=======
+               DEFINE_SYMBOL IW_API_EXPORTS)
+
+  if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    add_custom_command(
+      TARGET ejdb2
+      POST_BUILD
+      COMMAND strip -s $<TARGET_FILE:ejdb2>)
+  endif()
+
+>>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
   set_target_properties(
     ejdb2_s PROPERTIES VERSION ${PROJECT_VERSION} COMPILE_FLAGS "-DIW_NODLL"
                        OUTPUT_NAME ejdb2-${PROJECT_VERSION_MAJOR})
