@@ -216,41 +216,11 @@ endif()
 if(BUILD_EXAMPLES)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
 endif()
-<<<<<<< HEAD
-=======
-
-if(BUILD_DART_BINDING)
-  add_subdirectory(bindings/ejdb2_dart)
-endif()
-
-if(BUILD_JNI_BINDING)
-  add_subdirectory(bindings/ejdb2_jni)
-endif()
->>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
 
 if(BUILD_NODEJS_BINDING)
   add_subdirectory(bindings/ejdb2_node)
 endif()
 
-<<<<<<< HEAD
-=======
-if(BUILD_ANDROID_LIBS)
-  add_subdirectory(bindings/ejdb2_android)
-endif()
-
-if(BUILD_REACT_NATIVE_BINDING)
-  add_subdirectory(bindings/ejdb2_react_native)
-endif()
-
-if(BUILD_FLUTTER_BINDING)
-  add_subdirectory(bindings/ejdb2_flutter)
-endif()
-
-if(BUILD_SWIFT_BINDING)
-  add_subdirectory(bindings/ejdb2_swift)
-endif()
-
->>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
 if(NOT BUILD_SHARED_LIBS)
   add_definitions(-DIW_NODLL)
   add_library(ejdb2 STATIC ${ALL_SRC})
