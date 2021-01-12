@@ -1,10 +1,5 @@
 file(READ ${CMAKE_CURRENT_SOURCE_DIR}/version.txt _VERSION)
-<<<<<<< HEAD
 set_property(GLOBAL PROPERTY EJDB2_NODE_VERSION_PROPERTY "${PROJECT_VERSION}${_VERSION}")
-=======
-set_property(GLOBAL PROPERTY EJDB2_NODE_VERSION_PROPERTY
-                             "${PROJECT_VERSION}${_VERSION}")
->>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
 set(EJDB2_NODE_VERSION "${PROJECT_VERSION}${_VERSION}")
 
 if(NOT DEFINED NODE_PUB_DIR)
@@ -37,17 +32,10 @@ endif()
 string(TOLOWER ${CMAKE_SYSTEM_NAME}-${PROCESSOR} NODE_BIN_SUFFIX)
 set(NODE_BIN_DIR ${NODE_BIN_ROOT}/${NODE_BIN_SUFFIX})
 
-<<<<<<< HEAD
 find_program(NPM_EXEC npm)
 if (NPM_EXEC MATCHES "NPM_EXEC-NOTFOUND")
   message(FATAL_ERROR "`npm` executable not found")
 endif ()
-=======
-find_program(YARN_EXEC yarn)
-if(YARN_EXEC MATCHES "YARN_EXEC-NOTFOUND")
-  message(FATAL_ERROR "`yarn` executable not found")
-endif()
->>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
 
 add_library(ejdb2_node MODULE ejdb2_node.c)
 target_link_libraries(ejdb2_node ejdb2_s ${PROJECT_LLIBRARIES})
