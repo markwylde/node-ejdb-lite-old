@@ -256,20 +256,8 @@ if(BUILD_SHARED_LIBS)
     PROPERTIES VERSION ${PROJECT_VERSION}
                SOVERSION ${PROJECT_VERSION_MAJOR}
                PUBLIC_HEADER "${PUB_HDRS}"
-<<<<<<< HEAD
                LINK_FLAGS_RELEASE "${LINK_FLAGS_RELEASE} -s"
                DEFINE_SYMBOL IW_API_EXPORTS)
-=======
-               DEFINE_SYMBOL IW_API_EXPORTS)
-
-  if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    add_custom_command(
-      TARGET ejdb2
-      POST_BUILD
-      COMMAND strip -s $<TARGET_FILE:ejdb2>)
-  endif()
-
->>>>>>> 7a497ee634d888d3ae9186b244e933cb88ed4111
   set_target_properties(
     ejdb2_s PROPERTIES VERSION ${PROJECT_VERSION} COMPILE_FLAGS "-DIW_NODLL"
                        OUTPUT_NAME ejdb2-${PROJECT_VERSION_MAJOR})
