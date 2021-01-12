@@ -1,9 +1,9 @@
 {
   "name": "node-ejdb-lite",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "repository": "https://github.com/markwylde/node-ejdb-lite.git",
   "author": "Anton Adamansky <adamansky@gmail.com>",
-  "description": "EJDB2 Node.js native binding",
+  "description": "Blazing fast (installs in seconds) and lightweight EJDB2 bindings for NodeJS",
   "license": "MIT",
   "main": "src/bindings/ejdb2_node/index.js",
   "types": "src/bindings/ejdb2_node/index.d.ts",
@@ -36,7 +36,6 @@
     "Changelog",
     "README.md"
   ],
-  "revision": "@GIT_REVISION@",
   "dependencies": {
     "semver": "^7.3.2"
   },
