@@ -59,7 +59,7 @@ set(PPA_DEBIAN_VERSION
     "ppa1"
     CACHE STRING "PPA version suffix for debian packages")
 
-    set(PROJECT_PPA_DISTRIB_TARGET
+set(PROJECT_PPA_DISTRIB_TARGET
     "focal;bionic;xenial"
     CACHE STRING "Ubuntu PPA distribution names")
 
@@ -164,7 +164,6 @@ if(CPACK_GENERATORS)
       "/\\\\.idea/"
       "/\\\\.settings/"
       "/\\\\.vscode/"
-      "\\\\.astylerc$"
       "\\\\.classpath$"
       "\\\\.editorconfig$"
       "\\\\.iml$"
@@ -172,7 +171,9 @@ if(CPACK_GENERATORS)
       "\\\\.log$"
       "\\\\.mk$"
       "\\\\.project$"
-      "\\\\.workspace$")
+      "\\\\.workspace$"
+      "\\\\.astylerc$"
+      "uncrustify\\\\.cfg")
   set(PROJECT_ARCH "${CMAKE_SYSTEM_PROCESSOR}")
 endif(CPACK_GENERATORS)
 

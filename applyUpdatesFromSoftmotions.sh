@@ -9,4 +9,5 @@ rm -rf .vscode \
   src/bindings/ejdb2_jni \
   src/bindings/ejdb2_react_native \
   BASE.md \
-  src/bindings/ejdb2_node/install.js
+  src/bindings/ejdb2_node/install.js \
+  uncrustify.cfg
