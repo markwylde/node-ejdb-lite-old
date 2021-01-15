@@ -1,5 +1,6 @@
 file(READ ${CMAKE_CURRENT_SOURCE_DIR}/version.txt _VERSION)
-set_property(GLOBAL PROPERTY EJDB2_NODE_VERSION_PROPERTY "${PROJECT_VERSION}${_VERSION}")
+set_property(GLOBAL PROPERTY EJDB2_NODE_VERSION_PROPERTY
+                             "${PROJECT_VERSION}${_VERSION}")
 set(EJDB2_NODE_VERSION "${PROJECT_VERSION}${_VERSION}")
 
 if(NOT DEFINED NODE_PUB_DIR)
@@ -33,9 +34,9 @@ string(TOLOWER ${CMAKE_SYSTEM_NAME}-${PROCESSOR} NODE_BIN_SUFFIX)
 set(NODE_BIN_DIR ${NODE_BIN_ROOT}/${NODE_BIN_SUFFIX})
 
 find_program(NPM_EXEC npm)
-if (NPM_EXEC MATCHES "NPM_EXEC-NOTFOUND")
+if(NPM_EXEC MATCHES "NPM_EXEC-NOTFOUND")
   message(FATAL_ERROR "`npm` executable not found")
-endif ()
+endif()
 
 add_library(ejdb2_node MODULE ejdb2_node.c)
 target_link_libraries(ejdb2_node ejdb2_s ${PROJECT_LLIBRARIES})
@@ -49,13 +50,18 @@ target_compile_options(ejdb2_node PRIVATE -DIW_API_EXPORTS
 
 if(APPLE)
   set_target_properties(
-    ejdb2_node PROPERTIES LINK_FLAGS_RELEASE "${LINK_FLAGS_RELEASE} -s"
-                          LINK_FLAGS "-rdynamic -undefined dynamic_lookup")
+    ejdb2_node PROPERTIES LINK_FLAGS "-rdynamic -undefined dynamic_lookup")
 else()
   set_target_properties(
-    ejdb2_node
-    PROPERTIES LINK_FLAGS_RELEASE "${LINK_FLAGS_RELEASE} -s"
-               LINK_FLAGS "-rdynamic -Wl,--unresolved-symbols=ignore-all")
+    ejdb2_node PROPERTIES LINK_FLAGS
+                          "-rdynamic -Wl,--unresolved-symbols=ignore-all")
+endif()
+
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+  add_custom_command(
+    TARGET ejdb2_node
+    POST_BUILD
+    COMMAND strip -s $<TARGET_FILE:ejdb2_node>)
 endif()
 
 configure_file(CHANGELOG.md ${NODE_PUB_DIR}/CHANGELOG.md @ONLY)
@@ -66,8 +72,9 @@ configure_file(binary.js ${NODE_PUB_DIR}/binary.js COPYONLY)
 configure_file(utils.js ${NODE_PUB_DIR}/utils.js COPYONLY)
 configure_file(test.js ${NODE_PUB_DIR}/test.js COPYONLY)
 
-if (BUILD_TESTS)
-  add_test(NAME ejdb2node
+if(BUILD_TESTS)
+  add_test(
+    NAME ejdb2node
     COMMAND ${NPM_EXEC} run test
     WORKING_DIRECTORY ${NODE_PUB_DIR})
 endif()
