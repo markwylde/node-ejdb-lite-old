@@ -1,6 +1,6 @@
 version=$(node -p "require('./package.json').version")
 
-. /etc/os-release || true
+(. /etc/os-release) || true
 if [ `which apk` ]; then
   os=alpine
 elif [ "$(uname)" = "Linux" ]; then
