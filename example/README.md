@@ -1,16 +1,16 @@
 # EJDB2 JavaScript example project
 
 ```ts
-const { EJDB2 } = require('ejdb2_node');
+const { EJDB2 } = require('node-ejdb-lite');
 
-async function run() {
+async function run () {
   const db = await EJDB2.open('example.db', { truncate: true });
 
-  var id = await db.put('parrots', {'name': 'Bianca', 'age': 4});
-  console.log(`Bianca record: ${id}`);
+  const id1 = await db.put('parrots', { name: 'Bianca', age: 4 });
+  console.log(`Bianca record: ${id1}`);
 
-  id = await db.put('parrots', {'name': 'Darko', 'age': 8});
-  console.log(`Darko record: ${id}`);
+  const id2 = await db.put('parrots', { name: 'Darko', age: 8 });
+  console.log(`Darko record: ${id2}`);
 
   const q = db.createQuery('/[age > :age]', 'parrots');
 
