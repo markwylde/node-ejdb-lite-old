@@ -33,9 +33,9 @@ endif()
 string(TOLOWER ${CMAKE_SYSTEM_NAME}-${PROCESSOR} NODE_BIN_SUFFIX)
 set(NODE_BIN_DIR ${NODE_BIN_ROOT}/${NODE_BIN_SUFFIX})
 
-find_program(NPM_EXEC npm)
-if(NPM_EXEC MATCHES "NPM_EXEC-NOTFOUND")
-  message(FATAL_ERROR "`npm` executable not found")
+find_program(YARN_EXEC yarn)
+if(YARN_EXEC MATCHES "YARN_EXEC-NOTFOUND")
+  message(FATAL_ERROR "`yarn` executable not found")
 endif()
 
 add_library(ejdb2_node MODULE ejdb2_node.c)
@@ -64,17 +64,28 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     COMMAND strip -s $<TARGET_FILE:ejdb2_node>)
 endif()
 
+configure_file(package.json ${NODE_PUB_DIR}/package.json @ONLY)
 configure_file(CHANGELOG.md ${NODE_PUB_DIR}/CHANGELOG.md @ONLY)
 configure_file(README.md ${NODE_PUB_DIR}/README.md COPYONLY)
+configure_file(yarn.lock ${NODE_PUB_DIR}/yarn.lock COPYONLY)
 configure_file(index.js ${NODE_PUB_DIR}/index.js COPYONLY)
 configure_file(index.d.ts ${NODE_PUB_DIR}/index.d.ts COPYONLY)
 configure_file(binary.js ${NODE_PUB_DIR}/binary.js COPYONLY)
 configure_file(utils.js ${NODE_PUB_DIR}/utils.js COPYONLY)
 configure_file(test.js ${NODE_PUB_DIR}/test.js COPYONLY)
 
+add_custom_command(
+  COMMAND yarn install
+  OUTPUT ${NODE_PUB_DIR}/node_modules
+  DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/yarn.lock
+          ${CMAKE_CURRENT_SOURCE_DIR}/package.json
+  WORKING_DIRECTORY ${NODE_PUB_DIR}
+  VERBATIM)
+add_custom_target(yarn ALL DEPENDS ${NODE_PUB_DIR}/node_modules)
+
 if(BUILD_TESTS)
   add_test(
     NAME ejdb2node
-    COMMAND ${NPM_EXEC} run test
+    COMMAND ${YARN_EXEC} run test
     WORKING_DIRECTORY ${NODE_PUB_DIR})
 endif()
