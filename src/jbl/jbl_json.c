@@ -8,7 +8,7 @@
 /** JSON parsing context */
 typedef struct JCTX {
   IWPOOL     *pool;
-  JBL_NODE   root;
+  JBL_NODE    root;
   const char *buf;
   const char *sp;
   iwrc       rc;
