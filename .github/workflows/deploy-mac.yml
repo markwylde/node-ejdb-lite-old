@@ -1,7 +1,7 @@
 on:
   pull_request:
 
-name: Run Tests (macOS)
+name: Upload Release Asset (macOS)
 
 jobs:
   build:
@@ -23,7 +23,6 @@ jobs:
         run: |
           npm install --ignore-scripts
           npm run install:source
-          ls -la ./build/src/bindings/ejdb2_node/ejdb2_node/
 
       - name: Run tests
         run: npm run test
