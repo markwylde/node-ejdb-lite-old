@@ -13,7 +13,7 @@ jobs:
 
       - name: Build project
         run: |
-          brew install cmake make g++
+          brew install cmake make gcc
           echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /github/home/.profile
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           npm install --ignore-scripts
