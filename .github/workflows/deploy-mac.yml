@@ -24,6 +24,7 @@ jobs:
         run: |
           npm install --ignore-scripts
           npm run install:source
+          ls -la ./build/src/bindings/ejdb2_node/ejdb2_node/
 
       - name: Run tests
         run: npm run test
@@ -41,6 +42,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ./build/src/bindings/ejdb2_node/darwin-x64/ejdb2_node.node
+          asset_path: ./build/src/bindings/ejdb2_node/ejdb2_node/darwin-x64/ejdb2_node.node
           asset_name: ejdb2_node_x64_darwin_x64.node
           asset_content_type: application/octet-stream
