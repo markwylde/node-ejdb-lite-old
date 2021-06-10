@@ -258,11 +258,18 @@ if(BUILD_SHARED_LIBS)
                PUBLIC_HEADER "${PUB_HDRS}"
                DEFINE_SYMBOL IW_API_EXPORTS)
 
-  if(CMAKE_BUILD_TYPE STREQUAL "Release")
+  if(NOT APPLE AND CMAKE_BUILD_TYPE STREQUAL "Release")
     add_custom_command(
       TARGET ejdb2
       POST_BUILD
       COMMAND strip -s $<TARGET_FILE:ejdb2>)
+  endif()
+
+  if(APPLE AND CMAKE_BUILD_TYPE STREQUAL "Release")
+    add_custom_command(
+      TARGET ejdb2
+      POST_BUILD
+      COMMAND strip -S $<TARGET_FILE:ejdb2>)
   endif()
 
   set_target_properties(

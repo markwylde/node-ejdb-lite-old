@@ -10,21 +10,36 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        type: [linux-node14, alpine-node14]
+        type: [linux-node14, macos-node14, alpine-node14]
         include:
           - type: linux-node14
             image: node:14
             node-version: 14.x
             os: linux
+            build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
             run: |
               apt-get update
               apt-get install -y cmake make gcc
               npm install --ignore-scripts
               npm run install:source
+          - type: macos-node14
+            image: node:14
+            node-version: 14.x
+            os: macos-latest
+            include:
+              CC: gcc
+              CXX: g++
+            build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/darwin-x64/ejdb2_node.node
+            run: |
+              /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && brew install cmake make g++
+              npm install --ignore-scripts
+              npm run install:source
+              ls -la ./build/src/bindings/ejdb2_node/ejdb2_node/
           - type: alpine-node14
             image: node:14-alpine
             node-version: 14.x
             os: alpine
+            build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
             run: |
               apk update
               apk add cmake make g++
@@ -55,6 +70,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
+          asset_path: ${{ matrix.build_output }}
           asset_name: ejdb2_node_x64_${{ matrix.os }}_${{ matrix.node-version }}.node
           asset_content_type: application/octet-stream

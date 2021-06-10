@@ -57,12 +57,20 @@ else()
                           "-rdynamic -Wl,--unresolved-symbols=ignore-all")
 endif()
 
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
+if(NOT APPLE AND CMAKE_BUILD_TYPE STREQUAL "Release")
   add_custom_command(
     TARGET ejdb2_node
     POST_BUILD
     COMMAND strip -s $<TARGET_FILE:ejdb2_node>)
 endif()
+
+if(APPLE AND CMAKE_BUILD_TYPE STREQUAL "Release")
+  add_custom_command(
+    TARGET ejdb2_node
+    POST_BUILD
+    COMMAND strip -S $<TARGET_FILE:ejdb2_node>)
+endif()
+
 
 configure_file(CHANGELOG.md ${NODE_PUB_DIR}/CHANGELOG.md @ONLY)
 configure_file(README.md ${NODE_PUB_DIR}/README.md COPYONLY)

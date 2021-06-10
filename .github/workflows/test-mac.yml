@@ -1,0 +1,28 @@
+on:
+  pull_request:
+
+name: Run Tests (macOS)
+
+jobs:
+  build:
+    name: Run Tests
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Delete npm prefix
+        run: npm config delete prefix
+
+      - name: Install dependencies
+        shell: bash --login {0}
+        run: nvm install 14 && nvm use 14
+
+      - name: Build project
+        shell: bash --login {0}
+        run: |
+          npm install --ignore-scripts
+          npm run install:source
+
+      - name: Run tests
+        run: npm run test
