@@ -20,6 +20,19 @@ jobs:
               apt-get install -y cmake make gcc
               npm install --ignore-scripts
               npm run install:source
+          - type: macos-node14
+            image: node:14
+            node-version: 14.x
+            os: macos-latest
+            include:
+              CC: gcc
+              CXX: g++
+            build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/darwin-x64/ejdb2_node.node
+            run: |
+              /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && brew install cmake make g++
+              npm install --ignore-scripts
+              npm run install:source
+              ls -la ./build/src/bindings/ejdb2_node/ejdb2_node/
           - type: alpine-node14
             image: node:14-alpine
             node-version: 14.x
