@@ -29,7 +29,10 @@ jobs:
               CXX: g++
             build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/darwin-x64/ejdb2_node.node
             run: |
-              /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && brew install cmake make g++
+              /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+              brew install cmake make g++
+              echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /github/home/.profile
+              eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
               npm install --ignore-scripts
               npm run install:source
               ls -la ./build/src/bindings/ejdb2_node/ejdb2_node/
