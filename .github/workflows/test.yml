@@ -14,14 +14,13 @@ jobs:
           - type: linux-node14
             image: node:14
             node-version: 14.x
-            os: linux
+            os: ubuntu-latest
             run: |
               apt-get update
               apt-get install -y cmake make gcc
               npm install --ignore-scripts
               npm run install:source
           - type: macos-node14
-            image: node:14
             node-version: 14.x
             os: macos-latest
             include:
@@ -38,7 +37,7 @@ jobs:
           - type: alpine-node14
             image: node:14-alpine
             node-version: 14.x
-            os: alpine
+            os: ubuntu-latest
             run: |
               apk update
               apk add cmake make g++
