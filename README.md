@@ -6,8 +6,9 @@
 
 EJDB2 is an embeddable JSON database engine published under MIT license.
 
-This project is a prebuilt library on npmjs that allows you to use ejdb_node on a linux
-machine without having to install cmake, make or gcc.
+This project automatically builds the c to node bindings in [GitHub actions](https://github.com/markwylde/node-ejdb-lite/actions), then stores them in the [Github releases](https://github.com/markwylde/node-ejdb-lite/releases).
+
+This means you can install ejdb on an Linux, Alpine or macOS machine, without the need for c, gcc, make or any other build tools.
 
 For full information on ejdb2, please visit the [offical project repository](https://github.com/Softmotions/ejdb).
 
