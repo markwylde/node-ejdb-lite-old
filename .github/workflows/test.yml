@@ -6,38 +6,24 @@ name: Run Tests
 jobs:
   build:
     name: Run Tests
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        type: [linux-node14, macos-node14, alpine-node14]
+        type: [linux-node14, alpine-node14]
         include:
           - type: linux-node14
             image: node:14
             node-version: 14.x
-            os: ubuntu-latest
+            os: linux
             run: |
               apt-get update
               apt-get install -y cmake make gcc
               npm install --ignore-scripts
               npm run install:source
-          - type: macos-node14
-            node-version: 14.x
-            os: macos-latest
-            include:
-              CC: gcc
-              CXX: g++
-            build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/darwin-x64/ejdb2_node.node
-            run: |
-              brew install cmake make g++
-              echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /github/home/.profile
-              eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-              npm install --ignore-scripts
-              npm run install:source
-              ls -la ./build/src/bindings/ejdb2_node/ejdb2_node/
           - type: alpine-node14
             image: node:14-alpine
             node-version: 14.x
-            os: ubuntu-latest
+            os: alpine
             run: |
               apk update
               apk add cmake make g++

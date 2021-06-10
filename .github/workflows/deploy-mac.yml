@@ -1,0 +1,24 @@
+on:
+  pull_request:
+
+name: Run Tests
+
+jobs:
+  build:
+    name: Run Tests
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build project
+        run: |
+          brew install cmake make g++
+          echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /github/home/.profile
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          npm install --ignore-scripts
+          npm run install:source
+          ls -la ./build/src/bindings/ejdb2_node/ejdb2_node/
+
+      - name: Run tests
+        run: npm run test
