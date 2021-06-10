@@ -6,7 +6,7 @@ name: Run Tests
 jobs:
   build:
     name: Run Tests
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         type: [linux-node14, macos-node14, alpine-node14]
