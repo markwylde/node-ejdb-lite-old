@@ -6,7 +6,7 @@ name: Run Tests
 jobs:
   build:
     name: Run Tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         type: [linux-node14, macos-node14, alpine-node14]
@@ -29,7 +29,6 @@ jobs:
               CXX: g++
             build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/darwin-x64/ejdb2_node.node
             run: |
-              /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
               brew install cmake make g++
               echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /github/home/.profile
               eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
