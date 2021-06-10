@@ -6,7 +6,7 @@ if(NOT APPLE AND CMAKE_BUILD_TYPE STREQUAL "Release")
   add_custom_command(
     TARGET jbs
     POST_BUILD
-    COMMAND strip -s $<TARGET_FILE:jbs>)
+    COMMAND ${STRIP_CMD} $<TARGET_FILE:jbs>)
 endif()
 
 if(APPLE AND CMAKE_BUILD_TYPE STREQUAL "Release")
