@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+=======
+ejdb2 (2.62) UNRELEASED; urgency=medium
+
+  * Java: com.softmotions.ejdb2.JSON.ValueType.getTypeOf set to be public 
+  * Flutter: Fixed #305
+  * Java: com.softmotions.ejdb2.JSON typo fixed  
+  * Java: com.softmotions.ejdb2.JSON added Comparable support
+  * Java: com.softmotions.ejdb2.JSON added better JSON.equals() implementation
+
+ -- Anton Adamansky <adamansky@gmail.com>  Wed, 23 Jun 2021 17:17:45 +0700
+
+ejdb2 (2.61) testing; urgency=medium
+
+  * Fixed incorrect arguments check in `jbn_merge_patch`
+
+ -- Anton Adamansky <adamansky@gmail.com>  Tue, 22 Jun 2021 10:51:46 +0700
+
+>>>>>>> 9eef97fe76dbbe36f4201e57b680c844bbab2883
 ejdb2 (2.0.60) testing; urgency=medium
 
   * Upgraded to iowow v1.4.11

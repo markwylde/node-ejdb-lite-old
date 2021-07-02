@@ -25,7 +25,11 @@ endif()
 if(APPLE)
   set(STRIP_CMD strip -x)
 else()
+<<<<<<< HEAD
   set(STRIP_CMD strip -s)
+=======
+  set(STRIP_CMD ${CMAKE_STRIP} -s)
+>>>>>>> 9eef97fe76dbbe36f4201e57b680c844bbab2883
 endif()
 
 include(CheckIncludeFile)
@@ -145,8 +149,11 @@ list(
 set(CMAKE_C_FLAGS
     "${CMAKE_C_FLAGS} -std=gnu11 -fsigned-char -pedantic -Wfatal-errors -Wall -Wextra \
                   -Wno-sign-compare -Wno-unused-parameter -Wno-unknown-pragmas -Wno-unused-function \
-                  -Wno-missing-field-initializers -Wno-missing-braces \
-                  -Wno-shorten-64-to-32")
+                  -Wno-missing-field-initializers -Wno-missing-braces")
+
+if(APPLE)
+  set("${CMAKE_C_FLAGS} -Wno-shorten-64-to-32")
+endif()
 
 if(NOT WIN32)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-implicit-fallthrough -fPIC")

@@ -11,7 +11,7 @@ typedef struct JCTX {
   JBL_NODE    root;
   const char *buf;
   const char *sp;
-  iwrc       rc;
+  iwrc rc;
 } JCTX;
 
 static void _jbn_add_item(JBL_NODE parent, JBL_NODE node) {
