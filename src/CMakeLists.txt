@@ -25,11 +25,7 @@ endif()
 if(APPLE)
   set(STRIP_CMD strip -x)
 else()
-<<<<<<< HEAD
-  set(STRIP_CMD strip -s)
-=======
   set(STRIP_CMD ${CMAKE_STRIP} -s)
->>>>>>> 9eef97fe76dbbe36f4201e57b680c844bbab2883
 endif()
 
 include(CheckIncludeFile)

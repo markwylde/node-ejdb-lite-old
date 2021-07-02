@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 ejdb2 (2.62) UNRELEASED; urgency=medium
 
   * Java: com.softmotions.ejdb2.JSON.ValueType.getTypeOf set to be public 
@@ -16,7 +14,6 @@ ejdb2 (2.61) testing; urgency=medium
 
  -- Anton Adamansky <adamansky@gmail.com>  Tue, 22 Jun 2021 10:51:46 +0700
 
->>>>>>> 9eef97fe76dbbe36f4201e57b680c844bbab2883
 ejdb2 (2.0.60) testing; urgency=medium
 
   * Upgraded to iowow v1.4.11
