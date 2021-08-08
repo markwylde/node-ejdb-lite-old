@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# git clone https://github.com/Softmotions/ejdb.git
+git pull softmotions master
 
-# git pull softmotions master
+git clone https://github.com/Softmotions/ejdb.git
 
 files=("src/examples src/jbi src/jbl src/jbr src/jbs src/jql src/tests src/tmpl .lvimrc Changelog")
 for file in $files
