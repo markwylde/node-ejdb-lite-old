@@ -6,8 +6,15 @@ See https://github.com/Softmotions/ejdb/blob/master/README.md
 
 For API usage examples take a look into [/example](https://github.com/Softmotions/ejdb/tree/master/src/bindings/ejdb2_node/example) and [test.js](https://github.com/Softmotions/ejdb/tree/master/src/bindings/ejdb2_node/test.js)
 
+<<<<<<< HEAD
 ```javascript
 const { EJDB2 } = require('node-ejdb-lite');
+=======
+## Sample code
+
+```ts
+import { EJDB2 } from "ejdb2_node";
+>>>>>>> 386315ea771e6bc742529560d07455cb3a0f0aae
 
 async function run() {
   const db = await EJDB2.open("example.db", { truncate: true });
