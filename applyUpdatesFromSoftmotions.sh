@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# git clone https://github.com/Softmotions/ejdb.git
-
 git pull softmotions master
 
-files=("src/examples src/jbi src/jbl src/jbr src/jbs src/jql src/tests src/tmpl .lvmrc Changelog")
+git clone https://github.com/Softmotions/ejdb.git
+
+files=("src/examples src/jbi src/jbl src/jbr src/jbs src/jql src/tests src/tmpl .lvimrc Changelog")
 for file in $files
 do
   rm -rf $file
