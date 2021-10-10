@@ -42,8 +42,11 @@ add_library(ejdb2_node MODULE ejdb2_node.c)
 target_link_libraries(ejdb2_node ejdb2_s ${PROJECT_LLIBRARIES})
 
 set_target_properties(
-  ejdb2_node PROPERTIES OUTPUT_NAME ejdb2_node PREFIX "" SUFFIX ".node"
-                        LIBRARY_OUTPUT_DIRECTORY ${NODE_BIN_DIR})
+  ejdb2_node
+  PROPERTIES OUTPUT_NAME ejdb2_node
+             PREFIX ""
+             SUFFIX ".node"
+             LIBRARY_OUTPUT_DIRECTORY ${NODE_BIN_DIR})
 
 target_compile_options(ejdb2_node PRIVATE -DIW_API_EXPORTS
                                           -DNODE_ADDON_API_DISABLE_DEPRECATED)
@@ -76,5 +79,6 @@ if(BUILD_TESTS)
   add_test(
     NAME ejdb2node
     COMMAND ${NPM_EXEC} run test
-    WORKING_DIRECTORY ${NODE_PUB_DIR})
+    WORKING_DIRECTORY ${NODE_PUB_DIR}
+  )
 endif()
