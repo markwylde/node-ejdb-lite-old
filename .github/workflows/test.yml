@@ -34,11 +34,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
-      - name: Checkout submodules
-        run: |
-          apk add git
-          git submodule init --recursive --remote
 
       - name: Build project
         run: ${{ matrix.run }}
