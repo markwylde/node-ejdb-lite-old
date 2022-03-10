@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        type: [linux-node14, alpine-node14]
+        type: [linux-node16, alpine-node16]
         include:
-          - type: linux-node14
-            image: node:14
-            node-version: 14.x
+          - type: linux-node16
+            image: node:16
+            node-version: 16.x
             os: linux
             build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
             run: |
               apt-get update
               apt-get install -y cmake make gcc git
-          - type: alpine-node14
-            image: node:14-alpine
-            node-version: 14.x
+          - type: alpine-node16
+            image: node:16-alpine
+            node-version: 16.x
             os: alpine
             build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
             run: |
