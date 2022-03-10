@@ -75,10 +75,18 @@ configure_file(binary.js ${NODE_PUB_DIR}/binary.js COPYONLY)
 configure_file(utils.js ${NODE_PUB_DIR}/utils.js COPYONLY)
 configure_file(test.js ${NODE_PUB_DIR}/test.js COPYONLY)
 
+add_custom_command(
+  COMMAND npm --non-interactive --no-progress install
+  OUTPUT ${NODE_PUB_DIR}/node_modules
+  DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/package-lock.json
+          ${CMAKE_CURRENT_SOURCE_DIR}/package.json
+  WORKING_DIRECTORY ${NODE_PUB_DIR}
+  VERBATIM)
+add_custom_target(npm ALL DEPENDS ${NODE_PUB_DIR}/node_modules)
+
 if(BUILD_TESTS)
   add_test(
     NAME ejdb2node
-    COMMAND ${NPM_EXEC} run test
-    WORKING_DIRECTORY ${NODE_PUB_DIR}
-  )
+    COMMAND ${NPM_EXEC} --non-interactive --no-progress run test
+    WORKING_DIRECTORY ${NODE_PUB_DIR})
 endif()

@@ -7,7 +7,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2012-2021 Softmotions Ltd <info@softmotions.com>
+ * Copyright (c) 2012-2022 Softmotions Ltd <info@softmotions.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -223,7 +223,7 @@ IW_EXPORT void jbl_set_user_data(JBL jbl, void *user_data, void (*user_data_free
  *
  * @param jbl JBL container.
  */
-IW_EXPORT void *jbl_get_user_data(JBL jbl);
+IW_EXPORT void* jbl_get_user_data(JBL jbl);
 
 /**
  * @brief Set integer JBL object property value
@@ -485,7 +485,7 @@ IW_EXPORT double jbl_get_f64(JBL jbl);
  * @brief Interpret `jbl` value as `\0` terminated character array.
  * Returns zero if value cannot be converted.
  */
-IW_EXPORT const char *jbl_get_str(JBL jbl);
+IW_EXPORT const char* jbl_get_str(JBL jbl);
 
 IW_EXPORT iwrc jbl_object_get_i64(JBL jbl, const char *key, int64_t *out);
 

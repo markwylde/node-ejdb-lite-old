@@ -2,7 +2,7 @@
 
 [![Join Telegram](https://img.shields.io/badge/join-ejdb2%20telegram-0088cc.svg)](https://t.me/ejdb2)
 [![license](https://img.shields.io/github/license/Softmotions/ejdb.svg)](https://github.com/Softmotions/ejdb/blob/master/LICENSE)
-![maintained](https://img.shields.io/maintenance/yes/2021.svg)
+![maintained](https://img.shields.io/maintenance/yes/2022.svg)
 
 EJDB2 is an embeddable JSON database engine published under MIT license.
 
@@ -504,6 +504,8 @@ PROJECTIONS = PROJECTION [ {'+' | '-'} PROJECTION ]
 
 Projection allows to get only subset of JSON document excluding not needed data.
 
+**Query placeholders API is supported in projections.**
+
 Lets add one more document to our collection:
 
 ```sh
@@ -795,7 +797,7 @@ modifier to the query to get rid of unnecessary data transferring and json data 
 
 MIT License
 
-Copyright (c) 2012-2021 Softmotions Ltd <info@softmotions.com>
+Copyright (c) 2012-2022 Softmotions Ltd <info@softmotions.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -814,5 +816,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
 ```
 
