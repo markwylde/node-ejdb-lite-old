@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          submodules: 'true'
 
       - name: Delete npm prefix
         run: npm config delete prefix

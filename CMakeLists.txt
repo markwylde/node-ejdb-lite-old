@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
                       "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
@@ -15,10 +15,8 @@ project(${PROJECT_NAME} C)
 set(PROJECT_VENDOR "Softmotions (https://softmotions.com)")
 set(PROJECT_WEBSITE "http://ejdb.org")
 set(PROJECT_MAINTAINER "Anton Adamansky <adamansky@gmail.com>")
-set(PROJECT_DESCRIPTION_SUMMARY
-    "Embeddable JSON database engine with network support (EJDB2).")
-set(PROJECT_DESCRIPTION
-    "Embeddable JSON database engine with network support (EJDB2).")
+set(PROJECT_DESCRIPTION_SUMMARY "Embeddable JSON database engine (EJDB2).")
+set(PROJECT_DESCRIPTION "Embeddable JSON database engine (EJDB2).")
 set(CHANGELOG_MESSAGE ${CHANGELOG_LAST_MESSAGE})
 set(PROJECT_PPA "ppa:adamansky/ejdb2")
 set(PROJECT_PPA_USER "adamansky")
@@ -127,13 +125,7 @@ if(PACKAGE_RPM)
   list(APPEND CPACK_GENERATORS "RPM")
 endif()
 
-if(NOT
-   (CPACK_GENERATORS
-    AND (BUILD_JNI_BINDING
-         OR BUILD_DART_BINDING
-         OR BUILD_NODEJS_BINDING)))
-  set(DO_INSTALL_CORE ON)
-endif()
+set(DO_INSTALL_CORE ON)
 
 if(NOT ENABLE_PPA)
   add_subdirectory(src)
@@ -151,27 +143,20 @@ if(CPACK_GENERATORS)
       "/mxe/"
       "/build/"
       "/target/"
-      "/tools/"
       "/docker/"
+      "/benchmark/"
       "/node_modules/"
       "/cmake-.*/"
       "/Makefile$"
       "hints\\\\.txt$"
       "/\\\\.clang/"
-      "/\\\\.codelite/"
+      "/\\\\.cache/"
       "/\\\\.git/"
-      "/\\\\.idea/"
       "/\\\\.settings/"
-      "/\\\\.vscode/"
       "\\\\.classpath$"
       "\\\\.editorconfig$"
-      "\\\\.iml$"
-      "\\\\.ipr$"
       "\\\\.log$"
       "\\\\.mk$"
-      "\\\\.project$"
-      "\\\\.workspace$"
-      "\\\\.astylerc$"
       "uncrustify\\\\.cfg")
   set(PROJECT_ARCH "${CMAKE_SYSTEM_PROCESSOR}")
 endif(CPACK_GENERATORS)
