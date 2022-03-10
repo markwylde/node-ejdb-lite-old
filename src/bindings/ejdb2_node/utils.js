@@ -30,9 +30,5 @@ if (platform.indexOf('win') === 0) {
 }
 
 module.exports = {
-  binariesDir: `${platform}-${process.arch}`,
-  download,
-  awaitProcess,
-  runProcess,
-  runProcessAndGetOutput
+  binariesDir: `${platform}-${process.arch}`
 };
