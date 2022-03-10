@@ -37,8 +37,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          submodules: 'true'
+
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
 
       - name: Build project
         run: ${{ matrix.run }}
