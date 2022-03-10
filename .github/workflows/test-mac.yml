@@ -10,8 +10,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
+      
+      - name: Checkout submodules
+        run: git submodule init --recursive --remote
 
       - name: Delete npm prefix
         run: npm config delete prefix

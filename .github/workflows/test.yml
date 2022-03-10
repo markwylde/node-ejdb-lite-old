@@ -17,7 +17,7 @@ jobs:
             os: linux
             run: |
               apt-get update
-              apt-get install -y cmake make gcc
+              apt-get install -y cmake make gcc git
               npm install --ignore-scripts
               npm run install:source
           - type: alpine-node14
@@ -26,7 +26,7 @@ jobs:
             os: alpine
             run: |
               apk update
-              apk add cmake make g++
+              apk add cmake make g++ git
               npm install --ignore-scripts
               npm run install:source
     container:
@@ -34,8 +34,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
+      
+      - name: Checkout submodules
+        run: git submodule init --recursive --remote
 
       - name: Build project
         run: ${{ matrix.run }}
