@@ -19,7 +19,7 @@ jobs:
             build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
             run: |
               apt-get update
-              apt-get install -y cmake make gcc
+              apt-get install -y cmake make gcc git
               npm install --ignore-scripts
               npm run install:source
           - type: alpine-node14
@@ -29,7 +29,7 @@ jobs:
             build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
             run: |
               apk update
-              apk add cmake make g++
+              apk add cmake make g++ git
               npm install --ignore-scripts
               npm run install:source
     container:
