@@ -18,8 +18,7 @@ jobs:
             run: |
               apt-get update
               apt-get install -y cmake make gcc git
-              npm install --ignore-scripts
-              npm run install:source
+
           - type: alpine-node14
             image: node:14-alpine
             node-version: 14.x
@@ -27,16 +26,20 @@ jobs:
             run: |
               apk update
               apk add cmake make g++ git
-              npm install --ignore-scripts
-              npm run install:source
+
     container:
       image: ${{ matrix.image }}
     steps:
+      - name: Build project
+        run: ${{ matrix.run }}
+
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build project
-        run: ${{ matrix.run }}
+      - name: Install
+        run: |
+          npm install --ignore-scripts
+          npm run install:source
 
       - name: Run tests
         run: npm run test
