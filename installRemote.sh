@@ -3,13 +3,13 @@ version=$(node -p "require('./package.json').version")
 (. /etc/os-release) || true
 if [ `which apk` ]; then
   os=alpine
-  nodedir=build/src/bindings/ejdb2_node/ejdb2_node/linux-x64
+  nodedir=./src
 elif [ "$(uname)" = "Linux" ]; then
   os=linux
-  nodedir=build/src/bindings/ejdb2_node/ejdb2_node/linux-x64
+  nodedir=./src
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   os=darwin
-  nodedir=build/src/bindings/ejdb2_node/ejdb2_node/darwin-x64
+  nodedir=./src
 else
   echo "Could not detect operating system"
   uname

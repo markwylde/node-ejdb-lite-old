@@ -12,24 +12,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          submodules: 'true'
+          submodules: recursive
 
       - name: Delete npm prefix
         run: npm config delete prefix
 
       - name: Install dependencies
         shell: bash --login {0}
-        run: nvm install 14 && nvm use 14
+        run: nvm install 16 && nvm use 16
 
       - name: Build project
         shell: bash --login {0}
         run: |
           npm install --ignore-scripts
-          npm run install:source
-          ls -la ./build/src/bindings/ejdb2_node/ejdb2_node/
+          ./installSource.sh
 
       - name: Run tests
-        run: npm run test
+        run: ./node_modules/.bin/ava -s
 
       - name: Get release
         id: get_release
@@ -44,6 +43,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ./build/src/bindings/ejdb2_node/ejdb2_node/darwin-x64/ejdb2_node.node
-          asset_name: ejdb2_node_x64_darwin_14.x.node
+          asset_path: ./src/ejdb2_node.node
+          asset_name: ejdb2_node_x64_darwin_16.x.node
           asset_content_type: application/octet-stream

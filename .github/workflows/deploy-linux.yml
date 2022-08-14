@@ -1,0 +1,84 @@
+on:
+  release:
+    types: [created]
+
+name: Upload Release Asset
+
+jobs:
+  build:
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        type: [linux-node16, linux-node18, alpine-node16, alpine-node18]
+        include:
+          - type: linux-node16
+            image: node:16
+            node-version: 16.x
+            os: linux
+            build_output: ./src/ejdb2_node.node
+            run: |
+              apt-get update
+              apt-get install -y cmake make gcc git
+          - type: linux-node18
+            image: node:18
+            node-version: 18.x
+            os: linux
+            build_output: ./src/ejdb2_node.node
+            run: |
+              apt-get update
+              apt-get install -y cmake make gcc git
+          - type: alpine-node16
+            image: node:16-alpine
+            node-version: 16.x
+            os: alpine
+            build_output: ./src/ejdb2_node.node
+            run: |
+              apk update
+              apk add cmake make g++ git
+          - type: alpine-node18
+            image: node:18-alpine
+            node-version: 18.x
+            os: alpine
+            build_output: ./src/ejdb2_node.node
+            run: |
+              apk update
+              apk add cmake make g++ git
+    container:
+      image: ${{ matrix.image }}
+    steps:
+      - name: Build project
+        run: ${{ matrix.run }}
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Install
+        run: |
+          npm install --ignore-scripts
+          ./installSource.sh
+
+      - name: Build project
+        run: ${{ matrix.run }}
+
+      - name: Run tests
+        run: ./node_modules/.bin/ava -s
+
+      - name: Get release
+        id: get_release
+        uses: bruceadams/get-release@v1.2.2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
+          asset_path: ${{ matrix.build_output }}
+          asset_name: ejdb2_node_x64_${{ matrix.os }}_${{ matrix.node-version }}.node
+          asset_content_type: application/octet-stream

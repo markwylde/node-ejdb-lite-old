@@ -5,8 +5,8 @@
   "author": "Anton Adamansky <adamansky@gmail.com>",
   "description": "Blazing fast (installs in seconds) and lightweight EJDB2 bindings for NodeJS",
   "license": "MIT",
-  "main": "src/bindings/ejdb2_node/index.js",
-  "types": "src/bindings/ejdb2_node/index.d.ts",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
@@ -24,17 +24,17 @@
     "arm64"
   ],
   "scripts": {
-    "test": "cd ./src/bindings/ejdb2_node && ava -s",
+    "test": "ava -s",
     "install": "npm run install:remote",
     "install:remote": "./installRemote.sh",
-    "install:source": "rm -rf build && mkdir build && cd build && cmake .. -DBUILD_NODEJS_BINDING=ON -DCMAKE_BUILD_TYPE=Release && make"
+    "install:source": "./installSource.sh"
   },
   "dependencies": {
-    "semver": "^7.3.5"
+    "semver": "^7.3.7"
   },
   "devDependencies": {
-    "ava": "^3.15.0",
-    "chai": "^4.3.4"
+    "ava": "^4.3.1",
+    "chai": "^4.3.6"
   },
   "keywords": [
     "ejdb",
@@ -50,7 +50,7 @@
   ],
   "ava": {
     "files": [
-      "src/bindings/ejdb2_node/test.js"
+      "src/test.js"
     ],
     "failWithoutAssertions": false
   }
