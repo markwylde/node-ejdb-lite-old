@@ -4,4 +4,4 @@ cd ejdb
 mkdir ./build && cd build
 cmake .. -DBUILD_NODEJS_BINDING=ON -DCMAKE_BUILD_TYPE=Release
 make
-cp ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node ../src/ejdb2_node.node
+cp ./src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node ../../src/ejdb2_node.node
