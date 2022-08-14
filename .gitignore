@@ -2,4 +2,4 @@ src/*.db
 src/*.db-wal
 node_modules
 src/*.node
-ejdb/
+ejdb
