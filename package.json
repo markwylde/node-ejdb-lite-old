@@ -24,10 +24,10 @@
     "arm64"
   ],
   "scripts": {
-    "test": "cd ./src/bindings/ejdb2_node && ava -s",
+    "test": "ava -s",
     "install": "npm run install:remote",
     "install:remote": "./installRemote.sh",
-    "install:source": "rm -rf build && mkdir build && cd build && cmake .. -DBUILD_NODEJS_BINDING=ON -DCMAKE_BUILD_TYPE=Release && make"
+    "install:source": "./installSource.sh"
   },
   "dependencies": {
     "semver": "^7.3.7"
@@ -50,7 +50,7 @@
   ],
   "ava": {
     "files": [
-      "src/bindings/ejdb2_node/test.js"
+      "src/test.js"
     ],
     "failWithoutAssertions": false
   }

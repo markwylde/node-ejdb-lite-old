@@ -16,7 +16,7 @@ jobs:
             image: node:16
             node-version: 16.x
             os: linux
-            build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
+            build_output: ./src/ejdb2_node.node
             run: |
               apt-get update
               apt-get install -y cmake make gcc git
@@ -24,7 +24,7 @@ jobs:
             image: node:18
             node-version: 18.x
             os: linux
-            build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
+            build_output: ./src/ejdb2_node.node
             run: |
               apt-get update
               apt-get install -y cmake make gcc git
@@ -32,7 +32,7 @@ jobs:
             image: node:16-alpine
             node-version: 16.x
             os: alpine
-            build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
+            build_output: ./src/ejdb2_node.node
             run: |
               apk update
               apk add cmake make g++ git
@@ -40,7 +40,7 @@ jobs:
             image: node:18-alpine
             node-version: 18.x
             os: alpine
-            build_output: ./build/src/bindings/ejdb2_node/ejdb2_node/linux-x64/ejdb2_node.node
+            build_output: ./src/ejdb2_node.node
             run: |
               apk update
               apk add cmake make g++ git

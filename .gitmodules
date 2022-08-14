@@ -1,6 +1,0 @@
-[submodule "extra/iowow"]
-	path = extra/iowow
-	url = https://github.com/Softmotions/iowow
-[submodule "extra/iwnet"]
-	path = extra/iwnet
-	url = https://github.com/Softmotions/iwnet

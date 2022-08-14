@@ -1,9 +1,5 @@
-#pragma once
-#ifndef JBREST_H
-#define JBREST_H
-
 /**************************************************************************************************
- * EJDB2
+ * EJDB2 Node.js native API binding.
  *
  * MIT License
  *
@@ -28,20 +24,12 @@
  * SOFTWARE.
  *************************************************************************************************/
 
-#include "ejdb2.h"
+const path = require('path');
 
-IW_EXTERN_C_START
-
-struct jbr;
-typedef struct jbr*JBR;
-
-iwrc jbr_start(EJDB db, const EJDB_OPTS *opts, JBR *out_jbr);
-
-void jbr_shutdown_request(EJDB db);
-
-void jbr_shutdown_wait(JBR jbr);
-
-iwrc jbr_init(void);
-
-IW_EXTERN_C_END
-#endif
+/*
+ * Load native library with specified name.
+ */
+module.exports = function (name) {
+  const file = path.resolve(__dirname, './ejdb2_node');
+  return require(file);
+};
