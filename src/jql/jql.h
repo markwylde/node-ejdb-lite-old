@@ -37,8 +37,8 @@
  *
  */
 
-#include "jbl.h"
-#include <ejdb2/iowow/iwlog.h>
+#include <iowow/iwjson.h>
+#include <iowow/iwlog.h>
 
 IW_EXTERN_C_START
 
@@ -114,6 +114,8 @@ IW_EXPORT WUR iwrc jql_set_str(JQL q, const char *placeholder, int index, const 
 IW_EXPORT WUR iwrc jql_set_str2(
   JQL q, const char *placeholder, int index, const char *val,
   void (*freefn)(void*, void*), void *op);
+
+IW_EXPORT WUR iwrc jql_set_str3(JQL q, const char *placeholder, int index, const char *val, size_t val_len);
 
 IW_EXPORT WUR iwrc jql_set_bool(JQL q, const char *placeholder, int index, bool val);
 

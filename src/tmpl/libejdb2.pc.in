@@ -10,3 +10,4 @@ Version: @PROJECT_VERSION@
 Libs: -L${libdir} -l@PROJECT_NAME@
 Cflags: -I${includedir}
 Libs.private: @PCLIBS@
+

@@ -10,7 +10,33 @@ This project automatically builds the c to node bindings in [GitHub actions](htt
 
 This means you can install ejdb on an Linux, Alpine or macOS machine, without the need for c, gcc, make or any other build tools.
 
+<<<<<<< HEAD
 For full information on ejdb2, please visit the [offical project repository](https://github.com/Softmotions/ejdb).
+=======
+---
+* [Native language bindings](#native-language-bindings)
+* Supported platforms
+  * [macOS](#osx)
+  * [iOS](https://github.com/Softmotions/EJDB2Swift)
+  * [Linux](#linux)
+  * [Android](#android)
+  * [Windows](#windows)
+* **[JQL query language](#jql)**
+  * [Grammar](#jql-grammar)
+  * [Quick into](#jql-quick-introduction)
+  * [Data modification](#jql-data-modification)
+  * [Projections](#jql-projections)
+  * [Collection joins](#jql-collection-joins)
+  * [Sorting](#jql-sorting)
+  * [Query options](#jql-options)
+* [Indexes and performance](#jql-indexes-and-performance-tips)
+* [Network API](#http-restwebsocket-api-endpoint)
+  * [HTTP API](#http-api)
+  * [Websockets API](#websocket-api)
+* [C API](#c-api)
+* [License](#license)
+---
+>>>>>>> 042b95f8a51b9ed0f2ef115f2643e41cfb1347a8
 
 ## Differences from offical library
 The official EJDB2 library for nodejs is fantastic, but this library has a few differences:
@@ -30,6 +56,7 @@ The official EJDB2 library for nodejs is fantastic, but this library has a few d
 - [mql-to-jql](https://github.com/markwylde/mql-to-jql) - convert mongo query into ejdb2 style
 - [canhazdb](https://github.com/markwylde/canhazdb) - create a clustered and sharded restful server
 
+<<<<<<< HEAD
 ## Installation
 ```bash
 npm install --save node-ejdb-lite
@@ -38,6 +65,65 @@ npm install --save node-ejdb-lite
 ## Example Usage
 ```javascript
 const { EJDB2 } = require('node-ejdb-lite');
+=======
+
+<br> `[1]` No HTTP/Websocket support [#257](https://github.com/Softmotions/ejdb/issues/257)
+<br> `[2]` Binaries are not distributed with dart `pub.` You can build it [manually](https://github.com/Softmotions/ejdb/tree/master/src/bindings/ejdb2_node#how-build-it-manually)
+<br> `[3]` Can be build, but needed a linkage with windows node/dart `libs`.
+<br> `[4]` Porting in progress [#273](https://github.com/Softmotions/ejdb/issues/273)
+
+## Native language bindings
+
+* [NodeJS](https://www.npmjs.com/package/ejdb2_node)
+* [Dart](https://pub.dartlang.org/packages/ejdb2_dart)
+* [Java](https://github.com/Softmotions/ejdb/blob/master/src/bindings/ejdb2_jni/README.md)
+* [Android support](#android)
+* [Swift | iOS](https://github.com/Softmotions/EJDB2Swift)
+* [React Native](https://github.com/Softmotions/ejdb/tree/master/src/bindings/ejdb2_react_native)
+* [Flutter](https://github.com/Softmotions/ejdb/tree/master/src/bindings/ejdb2_flutter)
+
+### Unofficial EJDB2 language bindings
+
+* Rust 
+  * https://crates.io/crates/ejdb2
+* .Net
+  * https://github.com/kmvi/ejdb2-csharp
+* Haskell
+  * https://github.com/cescobaz/ejdb2haskell
+  * https://hackage.haskell.org/package/ejdb2-binding
+* [Pharo](https://pharo.org)
+  * https://github.com/pharo-nosql/pharo-ejdb
+* Lua
+  * https://github.com/chriku/ejdb-lua
+
+## Status
+
+* **EJDB 2.0 core engine is well tested and used in various heavily loaded deployments**
+* Tested on `Linux`, `macOS` and `FreeBSD`. [Has limited Windows support](./WINDOWS.md)
+* Old EJDB 1.x version can be found in separate [ejdb_1.x](https://github.com/Softmotions/ejdb/tree/ejdb_1.x) branch.
+  We are not maintaining ejdb 1.x.
+
+## Used by
+
+* [Wirow video conferencing platform](https://github.com/wirow-io/wirow-server/)
+
+Are you using EJDB? [Let me know!](mailto:info@softmotions.com)
+
+## macOS
+
+EJDB2 code ported and tested on `High Sierra` / `Mojave` / `Catalina`
+
+[EJDB2 Swift binding](https://github.com/Softmotions/EJDB2Swift) for MacOS, iOS and Linux. 
+Swift binding is outdated at now. Looking for contributors.
+
+```
+brew install ejdb
+```
+
+## Building from sources 
+
+cmake v3.12 or higher required
+>>>>>>> 042b95f8a51b9ed0f2ef115f2643e41cfb1347a8
 
 async function run() {
   const db = await EJDB2.open('example.db', { truncate: true });
@@ -59,6 +145,63 @@ async function run() {
 
 run();
 ```
+<<<<<<< HEAD
+=======
+git clone --recurse-submodules git@github.com:Softmotions/ejdb.git
+
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+make install
+```
+
+## Linux
+### Ubuntu/Debian
+#### PPA repository
+
+```sh
+sudo add-apt-repository ppa:adamansky/ejdb2
+sudo apt-get update
+sudo apt-get install ejdb2
+```
+
+#### Building debian packages
+
+```sh
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DPACKAGE_DEB=ON
+make package
+```
+
+#### RPM based Linux distributions
+```sh
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DPACKAGE_RPM=ON
+make package
+```
+
+## Windows
+EJDB2 can be cross-compiled for windows
+
+**Note:** HTTP/Websocket network API is disabled and not yet supported
+
+Nodejs/Dart bindings not yet ported to Windows.
+
+**[Cross-compilation Guide for Windows](./WINDOWS.md)**
+
+
+
+# Android
+
+* [Flutter binding](https://github.com/Softmotions/ejdb/tree/master/src/bindings/ejdb2_flutter)
+* [React Native binding](https://github.com/Softmotions/ejdb/tree/master/src/bindings/ejdb2_react_native)
+
+## Sample Android application
+
+* https://github.com/Softmotions/ejdb/tree/master/src/bindings/ejdb2_android/test
+
+* https://github.com/Softmotions/ejdb_android_todo_app
+
+>>>>>>> 042b95f8a51b9ed0f2ef115f2643e41cfb1347a8
 
 # JQL
 
