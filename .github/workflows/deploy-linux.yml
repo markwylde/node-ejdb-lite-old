@@ -83,6 +83,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ${{ matrix.build_output }}
+          asset_path: ./src/ejdb2_node.node
           asset_name: ejdb2_node_x64_${{ matrix.os }}_${{ matrix.node-version }}.node
           asset_content_type: application/octet-stream
