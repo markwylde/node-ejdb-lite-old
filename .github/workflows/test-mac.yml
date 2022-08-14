@@ -31,6 +31,8 @@ jobs:
         shell: bash --login {0}
         run: |
           npm install --ignore-scripts
+          export LDFLAGS="-L/usr/local/opt/llvm@11/lib"
+          export CPPFLAGS="-I/usr/local/opt/llvm@11/include"
           ./installSource.sh
 
       - name: Run tests

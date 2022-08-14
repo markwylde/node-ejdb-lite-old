@@ -1,9 +1,6 @@
 rm -rf ejdb
 git clone --recursive https://github.com/Softmotions/ejdb.git
 cd ejdb
-
-printf "set (CMAKE_C_STANDARD 11)\n\n$(cat src/CMakeLists.txt)\n" > ./src/CMakeLists.txt
-
 mkdir ./build
 cd build
 cmake .. -DBUILD_NODEJS_BINDING=ON -DCMAKE_BUILD_TYPE=Release
