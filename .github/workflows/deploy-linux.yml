@@ -58,7 +58,7 @@ jobs:
       - name: Install
         run: |
           npm install --ignore-scripts
-          npm run install:source
+          ./installSource.sh
 
       - name: Build project
         run: ${{ matrix.run }}

@@ -24,7 +24,7 @@ jobs:
         shell: bash --login {0}
         run: |
           npm install --ignore-scripts
-          npm run install:source
+          ./installSource.sh
 
       - name: Run tests
         run: npm run test
