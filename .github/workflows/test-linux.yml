@@ -55,7 +55,7 @@ jobs:
       image: ${{ matrix.image }}
     steps:
       - name: Output Versions
-        run:
+        run: |
           - cmake --version
           - make --version
           - cpp --version
