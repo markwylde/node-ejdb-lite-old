@@ -54,6 +54,12 @@ jobs:
     container:
       image: ${{ matrix.image }}
     steps:
+      - name: Output Versions
+        run:
+          - cmake --version
+          - make --version
+          - cpp --version
+
       - name: Build project
         run: ${{ matrix.run }}
 
