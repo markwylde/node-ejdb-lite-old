@@ -8,13 +8,6 @@ jobs:
     name: Run Tests
     runs-on: macos-latest
     steps:
-      - name: Output Versions
-        run: |
-          cmake --version
-          make --version
-          cpp --version
-          brew install llvm@11
-
       - name: Checkout code
         uses: actions/checkout@v2
         with:
@@ -31,8 +24,6 @@ jobs:
         shell: bash --login {0}
         run: |
           npm install --ignore-scripts
-          export LDFLAGS="-L/usr/local/opt/llvm@11/lib"
-          export CPPFLAGS="-I/usr/local/opt/llvm@11/include"
           ./installSource.sh
 
       - name: Run tests

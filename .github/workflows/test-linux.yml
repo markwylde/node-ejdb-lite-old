@@ -41,7 +41,7 @@ jobs:
             os: alpine
             run: |
               apk update
-              apk add cmake make gcc g++ git
+              apk add cmake make g++ git
 
           - type: alpine-node18
             image: node:18-alpine
