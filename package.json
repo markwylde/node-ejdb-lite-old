@@ -6,6 +6,7 @@
   "description": "Blazing fast (installs in seconds) and lightweight EJDB2 bindings for NodeJS",
   "license": "MIT",
   "main": "src/index.js",
+  "types": "src/index.d.ts",
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.0.0"

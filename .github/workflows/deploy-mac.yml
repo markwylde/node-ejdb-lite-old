@@ -28,7 +28,7 @@ jobs:
           ./installSource.sh
 
       - name: Run tests
-        run: npm run test
+        run: ./node_modules/.bin/ava -s
 
       - name: Get release
         id: get_release
