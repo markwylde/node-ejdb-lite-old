@@ -13,6 +13,7 @@ jobs:
           cmake --version
           make --version
           cpp --version
+          brew install llvm@11
 
       - name: Checkout code
         uses: actions/checkout@v2
